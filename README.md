@@ -2,20 +2,21 @@
 
 This project is a Dockerized YOLOv5-based object detection application that identifies humans and other objects in a live video feed from your camera. The app highlights humans with green bounding boxes, marks other nearby objects with red bounding boxes, and displays the distance between the human and each object on the side of the screen.
 
-OBJECT-DETECTION
-│
-├── docker-compose.yml          # Docker Compose configuration
-├── Dockerfile                  # Dockerfile for container setup
-├── README.md                   # Project documentation
-├── pyproject.toml              # Poetry configuration for dependencies
-└── src                         # Source folder containing application code
-    ├── main.py                 # Main controller script
-    ├── object-detector         # Module folder for object detection
-    │   ├── __init__.py
-    │   └── yolov5-detector.py  # YOLOv5 detector class
-    └── utils                   # Utility functions folder
-        ├── __init__.py
-        └── distance-calculator.py  # Distance calculation utility
+# Project Structure
+
+- `docker-compose.yml` - Docker Compose configuration
+- `Dockerfile` - Dockerfile for container setup
+- `README.md` - Project documentation
+- `pyproject.toml` - Poetry configuration for dependencies
+- `src` - Source folder containing application code
+  - `main.py` - Main controller script
+  - `object-detector` - Module folder for object detection
+    - `__init__.py`
+    - `yolov5-detector.py` - YOLOv5 detector class
+  - `utils` - Utility functions folder
+    - `__init__.py`
+    - `distance-calculator.py` - Distance calculation utility
+
 
 ## Features
 - Real-time object detection using YOLOv5.
