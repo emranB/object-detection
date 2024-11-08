@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  object-detection:
+    build:
+      context: .
+      dockerfile: Dockerfile.ubuntu22.nvidia4060
+    runtime: nvidia
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+      - CAMERA_SOURCE=0  # Use local camera device
+    volumes:
+      - ./src:/app/src
+    working_dir: /app/src
+    command: poetry run object-detection

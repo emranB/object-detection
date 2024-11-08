@@ -4,19 +4,23 @@ This project is a Dockerized YOLOv5-based object detection application that iden
 
 # Project Structure
 
-- `docker-compose.yml` - Docker Compose configuration
-- `Dockerfile` - Dockerfile for container setup
-- `README.md` - Project documentation
-- `pyproject.toml` - Poetry configuration for dependencies
-- `src` - Source folder containing application code
-  - `main.py` - Main controller script
-  - `object-detector` - Module folder for object detection
-    - `__init__.py`
-    - `yolov5-detector.py` - YOLOv5 detector class
-  - `utils` - Utility functions folder
-    - `__init__.py`
-    - `distance-calculator.py` - Distance calculation utility
-
+OBJECT-DETECTION
+│
+├── docker-compose.ubuntu22.nvidia4060.yml  # For Ubuntu with NVIDIA GPU
+├── docker-compose-win11.yml                # For Windows 11 without GPU
+├── Dockerfile                              # Dockerfile for Ubuntu with GPU support
+├── Dockerfile.win11.no_gpu                 # Dockerfile for Windows 11 without GPU support
+├── README.md                               # Project documentation
+├── pyproject.toml                          # Poetry configuration for dependencies
+└── src                                     # Source folder containing application code
+    ├── main.py                             # Main controller script
+    ├── object-detector                     # Module folder for object detection
+    │   ├── __init__.py       
+    │   └── yolov5-detector.py              # YOLOv5 detector class
+    └── utils                               # Utility functions folder
+        ├── __init__.py       
+        ├── distance-calculator.py          # Distance calculation utility
+        └── get-camera-feed.py              # Utility to get the camera feed based on OS
 
 ## Features
 - Real-time object detection using YOLOv5.

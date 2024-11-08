@@ -1,0 +1,25 @@
+[tool.poetry]
+name = "object-detection"
+version = "0.1.0"
+description = "YOLOv5 Object Detection with Proximity Warning"
+authors = ["Emran Billah <emran.billah@gmail.com>"]
+packages = [
+    { include = "object_detector", from = "src" },
+    { include = "utils", from = "src" }
+]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+torch = "*"
+torchvision = "*"
+torchaudio = "*"
+opencv-python-headless = "*"
+pyyaml = "*"
+requests = "*"
+
+[tool.poetry.scripts]
+object-detection = "main:main"  # Add this line to create the custom command
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

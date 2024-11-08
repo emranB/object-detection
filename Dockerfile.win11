@@ -1,0 +1,39 @@
+# Use an official Python base image
+FROM python:3.8-slim
+
+# Install system dependencies
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+    build-essential \
+    ffmpeg \
+    libsm6 \
+    libxext6 && \
+    rm -rf /var/lib/apt/lists/*
+
+# Install Poetry
+RUN pip install poetry
+
+# Set up environment variables for the camera feed
+ARG HOST_IP
+ARG PORT
+ENV HOST_IP=${HOST_IP}
+ENV PORT=${PORT}
+ENV CAMERA_SOURCE="http://${HOST_IP}:${PORT}/video_feed"
+
+# Set the working directory
+WORKDIR /app
+
+# Copy the pyproject.toml file only (skip poetry.lock)
+COPY pyproject.toml ./
+
+# Install dependencies with Poetry, ignoring the lock file
+RUN poetry config virtualenvs.create false && poetry install --no-root
+
+# Copy the source code into the container
+COPY src/ /app/src/
+
+# Set the working directory to the source code directory
+WORKDIR /app/src
+
+# Run the application
+CMD ["poetry", "run", "object-detection"]

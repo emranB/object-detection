@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  object-detection:
+    build:
+      context: .
+      dockerfile: Dockerfile.win11
+      args:
+        HOST_IP: "${HOST_IP:-$(hostname -I | awk '{print $1}')}"  # Automatically gets the host IP
+    environment:
+      - HOST_IP=${HOST_IP:-$(hostname -I | awk '{print $1}')}
+      - PORT=1111
+    volumes:
+      - ./src:/app/src
+    working_dir: /app/src
+    command: poetry run object-detection
